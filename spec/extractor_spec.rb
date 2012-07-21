@@ -1,9 +1,11 @@
 require 'spec_helper'
 
-describe "Api" do
+describe Extractor do
   it "should work" do
-    get '/'
-
-    last_response.should be_ok
+    with_api(Extractor) do
+      get_request(path: '/api/v1/extractor') do |r|
+        r.response.should == '[:response, "ok"]'
+      end
+    end
   end
 end

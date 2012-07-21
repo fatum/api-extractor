@@ -1,19 +1,30 @@
-$: << './'
+require 'pathname'
+$LOAD_PATH.unshift(Pathname(File.join(File.dirname(__FILE__), './lib/')).realpath)
 
-require 'sinatra'
-require 'sinatra/synchrony'
-require 'sinatra/sequel'
+require 'goliath'
 
-require 'environment'
-require 'db/migrations'
+require 'sequel'
+require 'em-synchrony'
+require 'em-synchrony/em-http'
 
-require 'models/content'
+class Extractor < Goliath::API
+  use Goliath::Rack::Params
+  use Goliath::Rack::Validation::RequestMethod, %w(GET)
 
-require 'logger'
-database.loggers << Logger.new(STDOUT)
+  def response(env)
+    unless env["PATH_INFO"] == '/api/v1/extractor'
+      return [404, {}, "Not found"]
+    end
 
-get '/' do
-  Content.count
-  Content.all
-  'Sinatra::Synchrony is loaded automatically in classic mode, nothing needed'
+    [200, {}, {:response => "ok"}]
+  end
 end
+
+#class SimpleAPI < Goliath::API
+#  def response(env)
+#    req = EM::HttpRequest.new("http://www.google.com/").get
+#    resp = req.response
+
+#    [200, {}, "Request handled: #{resp}"]
+#  end
+#end

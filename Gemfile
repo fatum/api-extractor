@@ -1,12 +1,14 @@
 source "http://rubygems.org"
 
-gem "sinatra-synchrony"
 gem 'sequel'
-gem 'sinatra-sequel'
 gem 'rake'
-gem 'shotgun'
-gem 'em-mysql'
+
+gem 'rest-client'
+gem 'em-http-request'
+gem 'em-synchrony'
+gem 'faraday'
 gem 'thin'
+gem 'goliath'
 
 group :test do
   gem 'rack-test'
@@ -14,10 +16,13 @@ group :test do
 end
 
 group :development do
+  gem 'pry'
   gem 'pg'
-  gem 'em-postgresql-sequel'
+  gem 'postgres-pr'
+  gem 'em_postgresql'
 end
 
 group :production do
+#  gem 'em-mysql'
 #  gem 'mysql2'
 end
