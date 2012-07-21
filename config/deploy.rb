@@ -61,11 +61,10 @@ namespace :deploy do
 
   desc "[Re]generate upstart scripts from Procfile and [re]start services"
   task :setup_upstart_scripts, :roles => [:app] do
-    do_upstart_action(:stop, application_upstart_name)
-    do_upstart_action(:stop, application_upstart_name(:primary))
+    do_upstart_action(:stop, "api_server")
     run <<-CMD
-      cd #{current_release} && bundle exec foreman export upstart /etc/init -f #{current_release}/config/upstart/Procfile.#{stage}
+      cd #{current_release} && bundle exec foreman export upstart /etc/init -u #{user} -f #{current_release}/config/upstart/Procfile.#{stage}
     CMD
-    do_upstart_action(:start, application_upstart_name)
+    do_upstart_action(:start, "api_server")
   end
 end
