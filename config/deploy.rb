@@ -33,6 +33,10 @@ before "deploy:setup", "roundsman:install"
 before "deploy:setup", "roundsman:chef:install"
 before "deploy:setup", "deploy:bundler_install"
 
+after "deploy:update", "deploy:setup_upstart_scripts"
+after "deploy:migrations", "deploy:setup_upstart_scripts"
+after "deploy", "deploy:setup_upstart_scripts"
+
 namespace :deploy do
   task :server_setup do
     fetch_cookbooks

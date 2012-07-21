@@ -1,0 +1,14 @@
+development:
+  user: root
+  database: extractor_development
+  adapter: mysql2
+
+production:
+  user: root
+  adapter: mysql2
+  database: extractor
+
+test:
+  user: root
+  adapter: mysql2
+  database: extractor_test
