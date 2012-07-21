@@ -19,7 +19,7 @@ set :user, "vagrant"
 set :run_user, "service"
 
 set :branch, "master"
-set :repository, "https://github.com/fatum/state-handler.git"
+set :repository, "git@github.com:fatum/extractor-goliath.git"
 
 # Roundsman
 set :roundsman_user, user
