@@ -7,14 +7,9 @@ gem 'rest-client'
 gem 'em-http-request'
 gem 'em-synchrony'
 gem 'faraday'
-gem 'thin'
-gem 'goliath'
 
-gem "capistrano"
-gem "capistrano-ext"
-gem "capistrano_colors"
-gem 'roundsman'
-gem "bundler"
+gem 'goliath'
+gem "foreman"
 
 group :test do
   gem 'rack-test'
@@ -22,6 +17,12 @@ group :test do
 end
 
 group :development do
+  gem "capistrano"
+  gem "capistrano-ext"
+  gem "capistrano_colors"
+  gem 'roundsman'
+  gem "bundler"
+
   gem 'pry'
   gem 'pg'
   gem 'postgres-pr'

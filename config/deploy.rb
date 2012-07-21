@@ -1,5 +1,7 @@
 # -*- encoding : utf-8 -*-
 
+require 'deploy/helper'
+
 set :application, "extractor"
 set :stages, ['production', 'staging']
 set :default_stage, 'staging'
@@ -32,11 +34,14 @@ before "deploy:setup", "roundsman:chef:install"
 before "deploy:setup", "deploy:bundler_install"
 
 namespace :deploy do
-  task :server_setup, [:fetch_cookboks, :nginx_install, :mysql_install] do
+  task :server_setup do
+    fetch_cookbooks
+    nginx_install
+    mysql_install
   end
 
-  task :fetch_cookboks do
-    run "git submodule update"
+  task :fetch_cookbooks do
+    run "cd #{current_release} && git submodule update"
   end
 
   task :nginx_install, role: :app do
@@ -52,5 +57,15 @@ namespace :deploy do
     %w(bundle).each do |gem|
       sudo "gem install #{gem} --quiet --no-ri --no-rdoc"
     end
+  end
+
+  desc "[Re]generate upstart scripts from Procfile and [re]start services"
+  task :setup_upstart_scripts, :roles => [:app] do
+    do_upstart_action(:stop, application_upstart_name)
+    do_upstart_action(:stop, application_upstart_name(:primary))
+    run <<-CMD
+      cd #{current_release} && bundle exec foreman export upstart /etc/init -f #{current_release}/config/upstart/Procfile.#{stage}
+    CMD
+    do_upstart_action(:start, application_upstart_name)
   end
 end

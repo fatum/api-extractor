@@ -1,3 +1,6 @@
+require 'pathname'
+$LOAD_PATH.unshift(Pathname(File.join(File.dirname(__FILE__), './lib/')).realpath)
+
 load 'deploy'
 # Uncomment if you are using Rails' asset pipeline
     # load 'deploy/assets'
