@@ -1,0 +1,12 @@
+[submodule "config/cookbooks/mysql"]
+	path = config/cookbooks/mysql
+	url = https://github.com/cookbooks/rs-mysql.git
+[submodule "config/cookbooks/runit"]
+	path = config/cookbooks/runit
+	url = https://github.com/cookbooks/oc-runit.git
+[submodule "config/cookbooks/nginx"]
+	path = config/cookbooks/nginx
+	url = https://github.com/cookbooks/oc-nginx.git
+[submodule "config/cookbooks/rs-openssl"]
+	path = config/cookbooks/rs-openssl
+	url = https://github.com/cookbooks/rs-openssl.git
