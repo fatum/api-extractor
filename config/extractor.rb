@@ -5,7 +5,7 @@ environment :development do
     password: "",
     host: "localhost",
     database: "extractor_development",
-    adapter: "postgres",
+    adapter: "mysql2",
     logger: Logger.new(STDOUT)
   }
 end
@@ -16,7 +16,7 @@ environment :test do
     password: "",
     host: "localhost",
     database: "extractor_test",
-    adapter: "postgres"
+    adapter: "mysql2"
   }
 end
 

@@ -10,6 +10,7 @@ gem 'faraday'
 
 gem 'goliath'
 gem "foreman"
+gem 'mysql2'
 
 group :test do
   gem 'rack-test'
@@ -24,12 +25,4 @@ group :development do
   gem "bundler"
 
   gem 'pry'
-  gem 'pg'
-  gem 'postgres-pr'
-  gem 'em_postgresql'
-end
-
-group :production do
-#  gem 'em-mysql'
-#  gem 'mysql2'
 end
