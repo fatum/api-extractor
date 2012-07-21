@@ -10,6 +10,12 @@ gem 'faraday'
 gem 'thin'
 gem 'goliath'
 
+gem "capistrano"
+gem "capistrano-ext"
+gem "capistrano_colors"
+gem 'roundsman'
+gem "bundler"
+
 group :test do
   gem 'rack-test'
   gem 'rspec'
