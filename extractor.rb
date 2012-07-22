@@ -2,13 +2,14 @@ require 'pathname'
 $LOAD_PATH.unshift(Pathname(File.join(File.dirname(__FILE__), './lib/')).realpath)
 
 require 'goliath'
-
 require 'sequel'
-require 'em-synchrony'
 require 'em-synchrony/em-http'
 
 class Extractor < Goliath::API
   use Goliath::Rack::Params
+  use Goliath::Rack::DefaultMimeType
+  use Goliath::Rack::Formatters::JSON
+  use Goliath::Rack::Render
   use Goliath::Rack::Validation::RequestMethod, %w(GET)
 
   def response(env)
@@ -16,15 +17,12 @@ class Extractor < Goliath::API
       return [404, {}, "Not found"]
     end
 
-    [200, {}, {:response => "ok"}]
+    response = if row = Content.find_by_url(params["url"])
+      Content.deserealize(row.content)
+    else
+      Worker::Readability.perform(params["url"])
+    end
+
+    [200, {"Content-Type" => "application/json"}, response: response]
   end
 end
-
-#class SimpleAPI < Goliath::API
-#  def response(env)
-#    req = EM::HttpRequest.new("http://www.google.com/").get
-#    resp = req.response
-
-#    [200, {}, "Request handled: #{resp}"]
-#  end
-#end

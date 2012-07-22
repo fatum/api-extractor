@@ -1,9 +1,15 @@
 class CreateContents < Sequel::Migration
   def up
     create_table :contents do
-      integer :id
+      primary_key :id
+
+      Integer :id
+      String :hash_url, size: 32
       text :content
+
+      DateTime :created_at
     end
+    add_index :contents, :hash_url, unique: true
   end
 
   def down

@@ -3,16 +3,20 @@ source "http://rubygems.org"
 gem 'sequel'
 gem 'rake'
 
-gem 'rest-client'
 gem 'em-http-request'
 gem 'em-synchrony'
-gem 'faraday'
+
+gem 'ruby-readability'
+gem 'nokogiri'
+gem 'addressable'
+gem 'mechanize'
 
 gem 'goliath'
 gem "foreman"
 gem 'mysql2'
 
 group :test do
+  gem 'json'
   gem 'rack-test'
   gem 'rspec'
 end
