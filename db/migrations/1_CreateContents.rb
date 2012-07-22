@@ -5,7 +5,7 @@ class CreateContents < Sequel::Migration
 
       Integer :id
       String :hash_url, size: 32
-      text :content
+      MediumText :content
 
       DateTime :created_at
     end

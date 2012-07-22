@@ -8,10 +8,10 @@ class Content < Sequel::Model
   end
 
   def self.serialize(content)
-    Marshal.dump(content)
+    content.to_yaml
   end
 
   def self.deserealize(string)
-    Marshal.load(string)
+    YAML.load(string)
   end
 end
