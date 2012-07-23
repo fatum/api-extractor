@@ -48,6 +48,10 @@ namespace :deploy do
     run "cd #{current_release} && git submodule update"
   end
 
+  task :migrate do
+    run "cd #{current_release} && bundle exec rake db:migrate"
+  end
+
   task :nginx_install, role: :app do
     roundsman.run_list "recipe[runit]",
                        "recipe[nginx]"
