@@ -10,7 +10,7 @@ module Worker
     end
 
     def content_valid?(content)
-      return if content[:article] == nil && content.keys == [:article]
+      !(content[:article] == nil && content.keys == [:article])
     end
   end
 end
