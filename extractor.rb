@@ -20,7 +20,7 @@ class Extractor < Goliath::API
     response = if row = Content.find_by_url(params["url"])
       Content.deserealize(row.content)
     else
-      Worker::Readability.perform(params["url"])
+      Worker::Readability.perform(params["url"], env.config[:http])
     end
 
     [200, {"Content-Type" => "application/json"}, response: response]

@@ -3,6 +3,7 @@ class Extractor::Media
   def self.extract(url, response)
     return unless url.to_s
 
+    return if response.response == ""
     page = Nokogiri::HTML(response.response)
     {
       title: page.at_css('title').content,

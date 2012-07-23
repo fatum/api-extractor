@@ -7,8 +7,11 @@ class Extractor::Readability
   end
 
   def self.get_content(response)
+    return if response.response == ""
+
     encoding = detect_encoding(response)
-    Readability::Document.new(response.response, encoding: encoding).content
+    response = Readability::Document.new(response.response, encoding: encoding)
+    response.content unless response == nil
   end
 
   def self.detect_encoding(response)
