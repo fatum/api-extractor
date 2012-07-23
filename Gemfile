@@ -17,11 +17,11 @@ gem 'mysql2'
 
 group :test do
   gem 'json'
+  gem 'rack-test'
+  gem 'rspec'
 end
 
 group :development do
-  gem 'rspec'
-  gem 'rack-test'
   gem "capistrano"
   gem "capistrano-ext"
   gem "capistrano_colors"

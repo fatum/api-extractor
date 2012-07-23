@@ -1,14 +1,13 @@
 #!/usr/bin/env rake
-require 'rspec/core/rake_task'
+#require 'rspec/core/rake_task'
 require 'sequel'
 
 require './lib/configuration'
 
 Sequel.extension :migration
 
-RSpec::Core::RakeTask.new(:spec)
-
-task :default => :spec
+#RSpec::Core::RakeTask.new(:spec)
+#task :default => :spec
 
 environment = ENV["ENV"] || "development"
 DB = Sequel.connect(Configuration.database[environment])
