@@ -38,7 +38,7 @@ class Extractor
       end
 
       videos.map do |video|
-        video.to_s.strip.html_safe
+        video.to_s.strip
       end
     end
 
@@ -86,7 +86,7 @@ class Extractor
 
       src = frame.attributes["src"].value
       <<-EMBED
-        <iframe src="#{src}" width="#{weight}" height="#{height}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+        <iframe src="#{src}" width="#{wight}" height="#{height}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
       EMBED
     end
   end

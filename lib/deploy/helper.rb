@@ -12,7 +12,7 @@ UPSTART_ACTION_REQUIRED_START_STATUS = { :start => '-ne 0', :stop => '-eq 0' }
 
 def do_upstart_action(action, app_name)
   raise "Bad upstart action: #{action}, allowed are #{UPSTART_ACTIONS.inspect}" unless UPSTART_ACTIONS.include?(action)
-  app = 'app-' + app_name
+  app = 'api-' + app_name
   upstart_path = upstart_script_path(app)
   cond = UPSTART_ACTION_REQUIRED_START_STATUS[action]
   run <<-CMD
