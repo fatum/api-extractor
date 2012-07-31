@@ -23,6 +23,8 @@ set :repository, "git@github.com:fatum/extractor-goliath.git"
 
 # Roundsman
 set :roundsman_user, user
+set :apache, listen_ports: [8080]
+
 # TODO: Check .rbenv-version
 set :ruby_version, '1.9.3-p125'
 
@@ -59,6 +61,15 @@ namespace :deploy do
 
   task :mysql_install, role: :db do
     roundsman.run_list "recipe[mysql::server]"
+  end
+
+  task :munin_install do
+    apache2_install
+    roundsman.run_list "recipe[munin::server]"
+  end
+
+  task :apache2_install do
+    roundsman.run_list "recipe[apache2]"
   end
 
   task :bundler_install, role: :app do

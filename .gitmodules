@@ -10,3 +10,9 @@
 [submodule "config/cookbooks/rs-openssl"]
 	path = config/cookbooks/rs-openssl
 	url = https://github.com/cookbooks/rs-openssl.git
+[submodule "config/cookbooks/munin"]
+	path = config/cookbooks/munin
+	url = https://github.com/opscode-cookbooks/munin.git
+[submodule "config/cookbooks/apache2"]
+	path = config/cookbooks/apache2
+	url = https://github.com/opscode-cookbooks/apache2.git

@@ -1,5 +1,5 @@
 # Initializers
 
+import('db')
 import('http')
 import('lib')
-import('db')

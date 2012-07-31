@@ -5,16 +5,15 @@ describe Extractor do
 
   after(:each) { Content.truncate }
 
-  context "when use proxy" do
-
-    it "should work", focus: true do
+  context "when redirect" do
+    it "should successfully parse page" do
       with_api(Extractor) do |api|
-        api.config[:http] = {
-          proxy: { host: "1234", port: 0001 }
-        }
+        api.config[:http] = { redirects: 3 }
 
-        get_request(path: "/api/v1/extractor?url=#{url}") do |r|
-          puts r.inspect
+        get_request(path: "/api/v1/extractor?url=http://t.co/kfN4UjwN") do |r|
+          output = JSON.parse(r.response)
+          output["response"].should_not be_empty
+          output["response"]["url"].should == "http://twitter.com/google/status/229576367933648896/photo/1"
         end
       end
     end
@@ -28,7 +27,7 @@ describe Extractor do
         get_request(path: "/api/v1/extractor?url=#{url}") do |r|
           output = JSON.parse(r.response)
           output["response"].should_not be_empty
-          output["response"].keys.map(&:to_sym).should == [:title, :description, :article, :images, :videos]
+          output["response"].keys.map(&:to_sym).should == [:title, :description, :article, :images, :videos, :url]
 
           output["response"]["images"].should_not be_empty
         end

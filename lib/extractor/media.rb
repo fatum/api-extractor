@@ -1,20 +1,16 @@
-class Extractor::Media
+class Extractor
+  class Media
+    def analyze(data, response)
+      return if response.response == ""
 
-  def self.extract(url, response)
-    return unless url.to_s
+      page = Nokogiri::HTML(response.response)
 
-    return if response.response == ""
-    page = Nokogiri::HTML(response.response)
-    {
-      title: page.at_css('title').content,
-      description: get_description(page),
-      article: "",
-      images: get_images(page),
-      videos: get_videos(page)
-    }
-  end
+      data[:title] = page.at_css('title').content
+      data[:description] = get_description(page)
+      data[:images] = get_images(page)
+      data[:videos] = get_videos(page)
+    end
 
-  class << self
   private
     def get_description(page)
       description = page.css('meta').find { |m|

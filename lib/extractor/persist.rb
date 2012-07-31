@@ -1,5 +1,5 @@
-module Worker
-  module Base
+class Extractor
+  module Persist
     def check_and_update_content!(link, content)
       raise "Unexpected url" unless link
 
