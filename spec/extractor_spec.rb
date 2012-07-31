@@ -5,6 +5,18 @@ describe Extractor do
 
   after(:each) { Content.truncate }
 
+  context "when images" do
+    it "should successfully parse page" do
+      with_api(Extractor) do |api|
+        api.config[:http] = { redirects: 3 }
+
+        get_request(path: "/api/v1/extractor?url=http://t.co/5M7IsokL") do |r|
+          JSON.parse(r.response).should_not be_empty
+        end
+      end
+    end
+  end
+
   context "when redirect" do
     it "should successfully parse page" do
       with_api(Extractor) do |api|

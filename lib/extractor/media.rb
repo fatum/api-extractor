@@ -7,7 +7,7 @@ class Extractor
 
       data[:title] = page.at_css('title').content
       data[:description] = get_description(page)
-      data[:images] = get_images(page)
+      data[:images] = get_images(page, data)
       data[:videos] = get_videos(page)
     end
 
@@ -42,12 +42,12 @@ class Extractor
       end
     end
 
-    def get_images(page)
+    def get_images(page, data)
       images = page.css('img')
       images.
         select { |i| i.attributes["width"] != nil && i.attributes["src"] != nil }.
         select { |i| i.attributes["width"].value.to_i > 100 && i.attributes["width"].value.to_i > 100 }.
-        map { |i| image_url(page, i.attributes["src"].value.to_s) }
+        map { |i| image_url(data, i.attributes["src"].value.to_s) }
     end
 
     def vimeo_frames_from(page)
@@ -72,9 +72,9 @@ class Extractor
       EMBED
     end
 
-    def image_url(page, url)
+    def image_url(data, url)
       if Addressable::URI.parse(url).relative?
-        Addressable::URI.join(page.uri.to_s, url).to_s
+        Addressable::URI.join(data[:url], url).to_s
       else
         url
       end
