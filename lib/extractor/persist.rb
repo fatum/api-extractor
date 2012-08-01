@@ -5,7 +5,7 @@ class Extractor
 
       Content.create(
         hash_url: Content.hash(link),
-        content: Content.serialize(content)
+        content: content
       ) if content_valid?(content)
     end
 

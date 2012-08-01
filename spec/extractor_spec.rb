@@ -5,6 +5,19 @@ describe Extractor do
 
   after(:each) { Content.truncate }
 
+  context "reproduce yaml parse" do
+    it "should successfuly deserealize" do
+      with_api(Extractor) do |api|
+        -> {
+          get_request(path: "/api/v1/extractor?url=http://lenta.ru/news/2012/08/01/roy/") do |r|
+            row = Content.first
+            row.content.should have_key(:title)
+          end
+        }.should change { Content.count }.from(0).to(1)
+      end
+    end
+  end
+
   context "when images" do
     it "should successfully parse page" do
       with_api(Extractor) do |api|

@@ -18,7 +18,7 @@ class Extractor < Goliath::API
     end
 
     response = if row = Content.find_by_url(params["url"])
-      Content.deserealize(row.content)
+      row.content
     else
       ExtractManager.new.perform(params["url"], env.config[:http])
     end
