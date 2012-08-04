@@ -2,16 +2,20 @@ class Extractor
   class Readability
 
     def analyze(data, response)
-      data[:article] = get_content(response)
+      readability = get_readability_response(response)
+      unless readability == nil
+        data[:title] = readability.title
+        data[:article] = readability.content
+        data[:images] = readability.images rescue []
+      end
     end
 
 private
-    def get_content(response)
+    def get_readability_response(response)
       return if response.response == ""
       encoding = detect_encoding(response)
 
-      readability_response = ::Readability::Document.new(response.response, encoding: encoding)
-      readability_response.content unless readability_response == nil
+      ::Readability::Document.new(response.response, encoding: encoding)
     end
 
     def detect_encoding(response)

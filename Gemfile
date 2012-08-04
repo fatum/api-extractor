@@ -10,6 +10,7 @@ gem 'ruby-readability'
 gem 'nokogiri'
 gem 'addressable'
 gem 'mechanize'
+gem 'mini_magick'
 
 gem 'goliath'
 gem "foreman"

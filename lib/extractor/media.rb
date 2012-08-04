@@ -5,9 +5,9 @@ class Extractor
 
       page = Nokogiri::HTML(response.response)
 
-      data[:title] = page.at_css('title').content
+      #data[:title] = page.at_css('title').content
       data[:description] = get_description(page)
-      data[:images] = get_images(page, data)
+      #data[:images] = get_images(page, data)
       data[:videos] = get_videos(page)
     end
 

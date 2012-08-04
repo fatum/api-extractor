@@ -24,5 +24,7 @@ class Extractor < Goliath::API
     end
 
     [200, {"Content-Type" => "application/json"}, response: response]
+  rescue ResourceNotFound
+    [404, {}, 'Page not found']
   end
 end

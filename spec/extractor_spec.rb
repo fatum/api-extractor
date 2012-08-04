@@ -31,7 +31,7 @@ describe Extractor do
   end
 
   context "when redirect" do
-    it "should successfully parse page" do
+    it "should follow to redirect" do
       with_api(Extractor) do |api|
         api.config[:http] = { redirects: 3 }
 
