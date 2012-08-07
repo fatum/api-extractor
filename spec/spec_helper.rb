@@ -5,6 +5,7 @@ require 'json'
 
 RSpec.configure do |c|
   c.run_all_when_everything_filtered = true
+  c.filter_run :focus => true
   c.include Goliath::TestHelper, :example_group => {
     :file_path => /spec/
   }

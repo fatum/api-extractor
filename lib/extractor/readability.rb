@@ -15,7 +15,12 @@ private
       return if response.response == ""
       encoding = detect_encoding(response)
 
-      ::Readability::Document.new(response.response, encoding: encoding)
+      ::Readability::Document.new(
+        response.response,
+        encoding: encoding, tags: %w[div p img a],
+        attributes: %w[src href],
+        remove_empty_nodes: true
+      )
     end
 
     def detect_encoding(response)
