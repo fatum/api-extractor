@@ -17,7 +17,7 @@ private
 
       ::Readability::Document.new(
         response.response,
-        encoding: encoding, tags: %w[div p img a],
+        encoding: encoding, tags: %w[div p img a h1 h2 h3 h4 h5],
         attributes: %w[src href],
         remove_empty_nodes: true
       )
