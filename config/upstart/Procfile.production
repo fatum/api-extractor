@@ -1,1 +1,1 @@
-extractor: cd /srv/projects/extractor/current && bundle exec ruby extractor.rb -sv -e production -s
+extractor: cd /srv/projects/api-extractor/current && bundle exec ruby extractor.rb -sv -e production -s

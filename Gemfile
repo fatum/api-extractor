@@ -13,7 +13,6 @@ gem 'mechanize'
 gem 'mini_magick'
 
 gem 'goliath'
-gem "foreman"
 gem 'mysql2'
 
 group :test do
@@ -23,11 +22,6 @@ group :test do
 end
 
 group :development do
-  gem "capistrano"
-  gem "capistrano-ext"
-  gem "capistrano_colors"
-  gem 'roundsman'
-  gem "bundler"
-
+  gem 'deploy-recipes', git: "git://github.com/fatum/deploy-recipes.git"
   gem 'pry'
 end
