@@ -4,3 +4,4 @@ set :application, "api-extractor"
 set :repository, "git@github.com:fatum/api-extractor.git"
 
 require 'deploy-recipes/deploy'
+set :user, "service"
