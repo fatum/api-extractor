@@ -14,6 +14,7 @@ gem 'mini_magick'
 
 gem 'goliath'
 gem 'mysql2'
+gem 'foreman'
 
 group :test do
   gem 'json'
@@ -23,6 +24,5 @@ end
 
 group :development do
   gem 'deploy-recipes', git: "git://github.com/fatum/deploy-recipes.git"
-  gem 'foreman'
   gem 'pry'
 end
