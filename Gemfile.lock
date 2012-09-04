@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/fatum/deploy-recipes.git
-  revision: e0418d976035e9e11dcf39697d10b3efa80fa2ea
+  revision: 4e72ecd0e3799d58c5aae04b75e7e5a58b109087
   specs:
     deploy-recipes (0.0.1)
       capistrano
