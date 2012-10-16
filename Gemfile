@@ -11,6 +11,7 @@ gem 'nokogiri'
 gem 'addressable'
 gem 'mechanize'
 gem 'mini_magick'
+gem 'statsd-ruby'
 
 gem 'goliath'
 gem 'mysql2'

@@ -9,7 +9,7 @@ describe Extractor do
     it "should successfuly deserealize" do
       with_api(Extractor) do |api|
         -> {
-          get_request(path: "/api/v1/extractor?url=http://lenta.ru/news/2012/08/01/roy/") do |r|
+          get_request(path: "/api/v1/extractor?url=http://olympic2012.lenta.ru/news/2012/08/07/_synchro/") do |r|
             row = Content.first
             row.content.should have_key(:title)
           end
@@ -45,7 +45,7 @@ describe Extractor do
   end
 
   context "without proxy" do
-    it "should work" do
+    it "should successfully extract information" do
       with_api(Extractor) do |api|
         api.config[:http] = {  }
 

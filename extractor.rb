@@ -14,6 +14,7 @@ class Extractor < Goliath::API
 
   def response(env)
     unless env["PATH_INFO"] == '/api/v1/extractor'
+      Stats.increment 'extractor.request.not_found'
       return [404, {}, "Not found"]
     end
 
@@ -23,8 +24,13 @@ class Extractor < Goliath::API
       ExtractManager.new.perform(params["url"], env.config[:http])
     end
 
+    Stats.increment 'extractor.request.success'
     [200, {"Content-Type" => "application/json"}, response: response]
   rescue ResourceNotFound
+    Stats.increment 'extractor.request.not_found'
     [404, {}, 'Page not found']
+  rescue StandardErrors
+    Stats.increment 'extractor.request.failed'
+    [500, {}, 'Some error occured']
   end
 end
